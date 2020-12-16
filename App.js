@@ -1,21 +1,46 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import * as Font from "expo-font";
+import AppLoading from "expo-app-loading";
+import { enableScreens } from 'react-native-screens'
+
+import MealsNavigator from './navigation/MealsNavigator'
+
+
+enableScreens();
+
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'bellfort': require("./assets/fonts/bellfort.otf"),
+    'billy': require("./assets/fonts/billy.ttf"),
+    'script': require("./assets/fonts/script.ttf"),
+  });
+};
 
 export default function App() {
+  const [FontLoaded, setFontLoaded] = useState(false);
+
+  if (!FontLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setFontLoaded(true)}
+        onError={(Err) => Alert.alert(Err)}
+      />
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <MealsNavigator />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  }
 });
