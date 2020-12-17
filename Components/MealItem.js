@@ -36,7 +36,7 @@ const MealItem = (props) => {
     <View style={styles.itemContainer}>
       <TouchableOpacity
         style={{ ...styles.itemButton, backgroundColor: Colors.primary }}
-        onPress={() => {}}
+        onPress={props.onSelectMeal}
       >
         <Image style={styles.itemImg} source={{ uri: props.itemImg }}></Image>
         <View style={styles.itemInfo}>

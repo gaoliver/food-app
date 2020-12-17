@@ -2,16 +2,16 @@ import Category from '../models/category'
 import Meal from '../models/meal'
 
 export const CATEGORIES = [
-    new Category('c1', 'Italian', '#090', 'pasta', 'yes'),
-    new Category('c2', 'Quick & Easy', '#709', 'food', 'yes'),
-    new Category('c3', 'Hamburgers', '#a30', 'hamburger', 'yes'),
-    new Category('c4', 'German', '#335', 'food-steak', 'yes'),
-    new Category('c5', 'Light & Lovely', '#aaa', 'food-apple', 'no'),
-    new Category('c6', 'Exotic', '#d50', 'food-variant', 'yes'),
-    new Category('c7', 'Breakfast', '#ffac00', 'bread-slice', 'no'),
-    new Category('c8', 'Asian', '#f02', 'earth', 'yes'),
-    new Category('c9', 'French', '#10f', 'food-croissant', 'yes'),
-    new Category('c10', 'Summer', '#f47', 'food-fork-drink', 'yes'),
+    new Category('c1', 'Italian', '#090', 'pasta', true),
+    new Category('c2', 'Quick & Easy', '#709', 'food', true),
+    new Category('c3', 'Hamburgers', '#a30', 'hamburger', true),
+    new Category('c4', 'German', '#335', 'food-steak', true),
+    new Category('c5', 'Light & Lovely', '#aaa', 'food-apple', false),
+    new Category('c6', 'Exotic', '#d50', 'food-variant', true),
+    new Category('c7', 'Breakfast', '#ffac00', 'bread-slice', false),
+    new Category('c8', 'Asian', '#f02', 'earth', true),
+    new Category('c9', 'French', '#10f', 'food-croissant', true),
+    new Category('c10', 'Summer', '#f47', 'food-fork-drink', true),
 ]
 
 export const MEALS = [

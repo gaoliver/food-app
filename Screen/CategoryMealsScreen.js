@@ -19,6 +19,14 @@ const CategoryMealsScreen = (props) => {
         isVegan={itemData.item.isVegan}
         isVegetarian={itemData.item.isVegetarian}
         isLactoseFree={itemData.item.isLactoseFree}
+        onSelectMeal={() => {
+          props.navigation.navigate({
+            routeName: "Meal Detail",
+            params: {
+              mealId: itemData.item.id,
+            },
+          });
+        }}
       />
     );
   };
@@ -44,7 +52,7 @@ CategoryMealsScreen.navigationOptions = (navigationData) => {
   const catId = navigationData.navigation.getParam("categoryId");
   const selectedCategory = CATEGORIES.find((cat) => cat.id === catId);
 
-  if (selectedCategory.dark === "yes") {
+  if (selectedCategory.dark === true) {
     var textColor = "white";
   } else {
     var textColor = "black";
