@@ -1,22 +1,40 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { StyleSheet, Text, View, Button, FlatList } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Colors from "../Constants/Colors";
-import { CATEGORIES } from "../data/dummy-data";
+import { CATEGORIES, MEALS } from "../data/dummy-data";
+import MealItem from "../Components/MealItem";
 
 const CategoryMealsScreen = (props) => {
+  const renderMealItem = (itemData) => {
+    return (
+      <MealItem
+        itemTitle={itemData.item.title}
+        itemDuration={itemData.item.duration}
+        itemComplexity={itemData.item.complexity}
+        itemAffordability={itemData.item.affordability}
+        itemImg={itemData.item.imageUrl}
+        isGlutenFree={itemData.item.isGlutenFree}
+        isVegan={itemData.item.isVegan}
+        isVegetarian={itemData.item.isVegetarian}
+        isLactoseFree={itemData.item.isLactoseFree}
+      />
+    );
+  };
+
   const catId = props.navigation.getParam("categoryId");
-  const selectedCategory = CATEGORIES.find(cat => cat.id === catId)
+
+  const displayedMeals = MEALS.filter(
+    (meal) => meal.categoryIds.indexOf(catId) >= 0
+  );
 
   return (
     <View style={styles.screen}>
-      <Text style={{ marginBottom: 20 }}>The Category Meal Screen</Text>
-      <Button
-        title="Meal Detail!"
-        onPress={() => {
-          props.navigation.navigate("Meal Detail");
-        }}
+      <FlatList
+        data={displayedMeals}
+        renderItem={renderMealItem}
+        style={{ flex: 1, width: "100%", marginTop: 10 }}
       />
     </View>
   );
@@ -24,15 +42,20 @@ const CategoryMealsScreen = (props) => {
 
 CategoryMealsScreen.navigationOptions = (navigationData) => {
   const catId = navigationData.navigation.getParam("categoryId");
-  const selectedCategory = CATEGORIES.find(cat => cat.id === catId)
-  
+  const selectedCategory = CATEGORIES.find((cat) => cat.id === catId);
+
+  if (selectedCategory.dark === "yes") {
+    var textColor = "white";
+  } else {
+    var textColor = "black";
+  }
 
   return {
     headerTitle: selectedCategory.title,
     headerStyle: {
       backgroundColor: selectedCategory.color,
     },
-    headerTintColor: Colors.TextColor,
+    headerTintColor: textColor,
   };
 };
 

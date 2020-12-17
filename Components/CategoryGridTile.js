@@ -12,9 +12,9 @@ const CategoryGridTile = (props) => {
         <MaterialCommunityIcons
           name={props.icon}
           size={50}
-          color={Colors.TextColor}
+          color={Colors.textColor}
         />
-        <Text style={styles.gridItemTitle}>{props.title}</Text>
+        <Text style={{...styles.gridItemTitle, color: Colors.textColor}}>{props.title}</Text>
       </View>
     </TouchableOpacity>
   );

@@ -26,14 +26,17 @@ const CategoriesScreen = (props) => {
   };
 
   return (
-    <FlatList data={CATEGORIES} renderItem={renderGridItem} numColumns={2} style={{backgroundColor: '#efefef'}} />
+    <FlatList data={CATEGORIES} renderItem={renderGridItem} numColumns={2} />
   );
 };
 
-CategoriesScreen.navigationOptions = {
-  headerStyle: {
-    backgroundColor: Colors.primary,
-  },
+CategoriesScreen.navigationOptions = (navigationData) => {
+  return {
+    headerStyle: {
+      backgroundColor: Colors.primary,
+    },
+    headerTintColor: Colors.text,
+  };
 };
 
 export default CategoriesScreen;
