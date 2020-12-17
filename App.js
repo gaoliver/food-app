@@ -3,18 +3,17 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
-import { enableScreens } from 'react-native-screens'
+import { enableScreens } from "react-native-screens";
 
-import MealsNavigator from './navigation/MealsNavigator'
-
+import MealsNavigator from "./navigation/MealsNavigator";
 
 enableScreens();
 
 const fetchFonts = () => {
   return Font.loadAsync({
-    'bellfort': require("./assets/fonts/bellfort.otf"),
-    'billy': require("./assets/fonts/billy.ttf"),
-    'script': require("./assets/fonts/script.ttf"),
+    bellfort: require("./assets/fonts/bellfort.otf"),
+    billy: require("./assets/fonts/billy.ttf"),
+    script: require("./assets/fonts/script.ttf"),
   });
 };
 
@@ -32,7 +31,10 @@ export default function App() {
   }
 
   return (
-    <MealsNavigator />
+    <>
+      <MealsNavigator />
+      <StatusBar backgroundColor="#0004" style='light' />
+    </>
   );
 }
 
@@ -42,5 +44,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  }
+  },
 });
