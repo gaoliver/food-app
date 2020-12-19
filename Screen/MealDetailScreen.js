@@ -1,9 +1,11 @@
-import React from "react";
-import { Button, Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Button, Image, StyleSheet, Text, View } from "react-native";
 import { MEALS, CATEGORIES } from "../data/dummy-data";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import Colors from "../Constants/Colors";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
+import CustomHeaderButton from "../Components/HeaderButton";
 
 const MealDetailScreen = (props) => {
   const mealId = props.navigation.getParam("mealId");
@@ -51,11 +53,13 @@ const MealDetailScreen = (props) => {
         style={{ ...styles.image }}
         source={{ uri: selectedMeal.imageUrl }}
       />
-      <ScrollView contentContainerStyle={{
+      <ScrollView
+        contentContainerStyle={{
           flex: 1,
-          position: 'absolute',
-          zIndex: 10
-      }}>
+          position: "absolute",
+          zIndex: 10,
+        }}
+      >
         <View style={styles.screen}>
           {/* HEADER */}
           <Text style={{ ...styles.title }}>{selectedMeal.title}</Text>
@@ -127,6 +131,11 @@ MealDetailScreen.navigationOptions = (navigationData) => {
     //   backgroundColor: selectedCategory.color,
     // },
     headerTintColor: textColor,
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item title="Favorite" iconName="favorite-outline" onPress={() => {}} />
+      </HeaderButtons>
+    ),
   };
 };
 
@@ -134,12 +143,12 @@ export default MealDetailScreen;
 
 const styles = StyleSheet.create({
   screen: {
-    width: '100%',
+    width: "100%",
     alignItems: "center",
-    paddingBottom: 100 ,
+    paddingBottom: 100,
     paddingHorizontal: 10,
     marginTop: 200,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: Colors.contentBackground,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
   },
@@ -153,7 +162,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 230,
-    position: 'absolute'
+    position: "absolute",
   },
   itemDetails: {
     width: "60%",

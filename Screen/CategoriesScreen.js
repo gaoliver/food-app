@@ -26,7 +26,7 @@ const CategoriesScreen = (props) => {
   };
 
   return (
-    <FlatList data={CATEGORIES} renderItem={renderGridItem} numColumns={2} />
+    <FlatList style={{backgroundColor: Colors.background}} data={CATEGORIES} renderItem={renderGridItem} numColumns={2} />
   );
 };
 

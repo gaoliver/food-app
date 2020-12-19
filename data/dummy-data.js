@@ -8,7 +8,7 @@ export const CATEGORIES = [
     new Category('c4', 'German', '#335', 'food-steak', true),
     new Category('c5', 'Light & Lovely', '#aaa', 'food-apple', false),
     new Category('c6', 'Exotic', '#d50', 'food-variant', true),
-    new Category('c7', 'Breakfast', '#ffac00', 'bread-slice', false),
+    new Category('c7', 'Breakfast', '#fa0', 'bread-slice', false),
     new Category('c8', 'Asian', '#f02', 'earth', true),
     new Category('c9', 'French', '#10f', 'food-croissant', true),
     new Category('c10', 'Summer', '#f47', 'food-fork-drink', true),

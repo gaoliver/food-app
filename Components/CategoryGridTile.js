@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   gridItemOut: {
     flex: 1,
     width: Dimensions.get("window").width / 2.21,
-    height: Dimensions.get("window").height / 6.3,
+    height: Dimensions.get("window").height / 6.77,
     borderRadius: 30,
     margin: 10,
     elevation: 3,

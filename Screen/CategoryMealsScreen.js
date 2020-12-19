@@ -32,6 +32,7 @@ const CategoryMealsScreen = (props) => {
   };
 
   const catId = props.navigation.getParam("categoryId");
+  const selectedCategory = CATEGORIES.find((cat) => cat.id === catId);
 
   const displayedMeals = MEALS.filter(
     (meal) => meal.categoryIds.indexOf(catId) >= 0
@@ -42,7 +43,7 @@ const CategoryMealsScreen = (props) => {
       <FlatList
         data={displayedMeals}
         renderItem={renderMealItem}
-        style={{ flex: 1, width: "100%", marginTop: 10 }}
+        style={{ flex: 1, width: "100%", paddingTop: 10, backgroundColor: selectedCategory.color + '3' }}
       />
     </View>
   );
@@ -61,9 +62,11 @@ CategoryMealsScreen.navigationOptions = (navigationData) => {
   return {
     headerTitle: selectedCategory.title,
     headerStyle: {
-      backgroundColor: selectedCategory.color,
+      // backgroundColor: selectedCategory.color,
+      backgroundColor: Colors.primary,
     },
-    headerTintColor: textColor,
+    // headerTintColor: textColor,
+    headerTintColor: selectedCategory.color,
   };
 };
 
