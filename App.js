@@ -14,6 +14,9 @@ const fetchFonts = () => {
     bellfort: require("./assets/fonts/bellfort.otf"),
     billy: require("./assets/fonts/billy.ttf"),
     script: require("./assets/fonts/script.ttf"),
+    hipster: require("./assets/fonts/hipster.ttf"),
+    space: require("./assets/fonts/space.ttf"),
+    wild: require("./assets/fonts/wild.ttf"),
   });
 };
 
@@ -33,7 +36,7 @@ export default function App() {
   return (
     <>
       <MealsNavigator />
-      <StatusBar backgroundColor="#0004" style='light' />
+      <StatusBar style="auto" />
     </>
   );
 }
