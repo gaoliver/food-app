@@ -7,6 +7,7 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { createDrawerNavigator } from "react-navigation-drawer";
+import { ScreenStack, enableScreens } from 'react-native-screens'
 
 import CustomHeaderButton from "../Components/HeaderButton";
 
@@ -27,21 +28,28 @@ import Colors from "../Constants/Colors";
 
 const defaultStackNavOptions = (navData) => {
   return {
-          headerRight: (
-            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-              <Item
-                title="Profile"
-                iconName="person"
-                iconSize={25}
-                onPress={() => {
-                  navData.navigation.toggleDrawer();
-                }}
-              />
-            </HeaderButtons>
-          ),
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Profile"
+          iconName="person"
+          iconSize={25}
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
+  };
+};
+
+const mainHeaderNavigationOptions = (navData) => {
+  return {
+    headerRight: null
   }
 }
 
+// Screens Navigator Config
 const MealsNavigator = createStackNavigator(
   {
     Categories: CategoriesScreen,
@@ -51,36 +59,53 @@ const MealsNavigator = createStackNavigator(
     MealDetail: { screen: MealDetailScreen },
   },
   {
-    defaultNavigationOptions: defaultStackNavOptions
+    defaultNavigationOptions: defaultStackNavOptions,
   }
 );
 
 const HomeNavigator = createStackNavigator(
   {
-    "Food App": { screen: HomeScreen },
+    Home: { 
+      screen: HomeScreen,
+      navigationOptions: {
+        title: "Food App",
+      }
+    },
+    Profile: {
+      screen: ProfileScreen,
+      navigationOptions: mainHeaderNavigationOptions
+    },
+    Settings: { 
+      screen: SettingsScreen,
+      navigationOptions: mainHeaderNavigationOptions
+    },
   },
   {
-    defaultNavigationOptions: defaultStackNavOptions
+    defaultNavigationOptions: defaultStackNavOptions,
   }
 );
 
 const FilterNavigator = createStackNavigator(
-    {
-        Filters: FiltersScreen
-    },
-    {
-        navigationOptions: {},
-        defaultNavigationOptions: defaultStackNavOptions
-    }
-)
+  {
+    Filters: FiltersScreen,
+  },
+  {
+    navigationOptions: {},
+    defaultNavigationOptions: defaultStackNavOptions,
+  }
+);
 
-const FavNavigator = createStackNavigator({
-  "My favorites": { screen: FavoritesScreen },
-  MealDetail: MealDetailScreen,
-},
-{
-    defaultNavigationOptions: defaultStackNavOptions
-});
+const FavNavigator = createStackNavigator(
+  {
+    "My favorites": { screen: FavoritesScreen },
+    MealDetail: MealDetailScreen,
+    ProfileScreen,
+  },
+  {
+    defaultNavigationOptions: defaultStackNavOptions,
+  }
+);
+// END Screens Navigator Config
 
 const tabScreenConfig = {
   Home: {
@@ -88,7 +113,11 @@ const tabScreenConfig = {
     navigationOptions: {
       tabBarIcon: (tabInfo) => {
         return (
-          <MaterialIcons name="home-filled" size={25} color={tabInfo.tintColor} />
+          <MaterialIcons
+            name="home-filled"
+            size={25}
+            color={tabInfo.tintColor}
+          />
         );
       },
     },
@@ -148,26 +177,22 @@ const MealsFavTabNavigator =
         },
       });
 
-
-      const FiltersNavigator = createStackNavigator({
-        Filters: FiltersScreen
-      })
-
-
-
 HomeScreen.navigationOptions = {
-    headerTitleStyle: {
-        fontFamily: 'hipster',
-        fontSize: 40
-    }
-}
+  headerTitleStyle: {
+    fontFamily: "hipster",
+    fontSize: 40,
+  },
+};
 
+const AppMain = createDrawerNavigator(
+  {
+    Home: MealsFavTabNavigator,
+    Profile: ProfileScreen,
+    Settings: SettingsScreen,
+  },
+  {
+    drawerPosition: "right",
+  }
+);
 
-const profileNavigator = createDrawerNavigator({
-  MealsFav: MealsFavTabNavigator,
-  Filters: FiltersNavigator
-});
-      
-
-export default createAppContainer(profileNavigator);
-
+export default createAppContainer(AppMain);
