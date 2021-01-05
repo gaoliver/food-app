@@ -10,6 +10,11 @@ import CategoriesScreen from "../Screen/CategoriesScreen";
 import CategoryMealsScreen from "../Screen/CategoryMealsScreen";
 import MealDetailScreen from "../Screen/MealDetailScreen";
 import FavoritesScreen from "../Screen/FavoritesScreen";
+import ProfileScreen from "../Screen/ProfileScreen";
+import SettingsScreen from "../Screen/SettingsScreen";
+import FollowingScreen from "../Screen/FollowingScreen";
+import FollowersScreen from "../Screen/FollowersScreen";
+import HelpScreen from "../Screen/HelpScreen";
 
 import Colors from "../Constants/Colors";
 
