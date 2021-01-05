@@ -5,7 +5,10 @@ import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { createDrawerNavigator } from "react-navigation-drawer";
+
+import CustomHeaderButton from "../Components/HeaderButton";
 
 // Screens
 import CategoriesScreen from "../Screen/CategoriesScreen";
